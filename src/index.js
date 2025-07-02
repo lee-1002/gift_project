@@ -1,10 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// src/index.js (또는 App 최상단)
+window.addEventListener("error", (event) => {
+  // 메시지가 Script error. 이고, 파일명이 Kakao 도메인을 포함하면
+  if (
+    event.message === "Script error." &&
+    event.filename.includes("dapi.kakao.com")
+  ) {
+    event.preventDefault(); // React 에러 오버레이 무시
+  }
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
